@@ -13,8 +13,6 @@ npm i @slaviczavik/http-data-parser
 
 # Example
 
-## Code
-
 ```JS
 const HttpDataParser = require('@slaviczavik/http-data-parser')
 
@@ -22,22 +20,27 @@ const HttpDataParser = require('@slaviczavik/http-data-parser')
 const boundary '--------------------------034172598905589540726558'
 const parser = new HttpDataParser(boundary)
 
-parser.on('header', function (buffer) {
+parser.on('header', function (data, isLast) {
   // Save headers somewhere...
+
+  if (isLast) {
+    // Here you may prepare for handling body data,
+    // like create a writable stream and so on.
+  }
 })
 
-parser.on('data', function (buffer) {
+parser.on('data', function (data) {
   // Save body content somewhere...
 })
 
 parser.on('part', function () {
   // We reached the end of one body part.
-  // Here we can concate headers and/or body content together.
+  // Here we can concate body content together.
 })
 
 parser.on('end', function () {
   // We reached the end of whole body.
-  // Or here we can concate headers and/or body content together.
+  // No other data will come.
 })
 
 req.on('data', function (data) {
@@ -48,3 +51,46 @@ req.on('end', function () {
   parser.end()
 })
 ```
+
+# API
+
+## Constructor
+### `new HttpDataParser(boundary)`
+
+| Name | Required | Type | Description | Default
+| - | - | - | - | - |
+| `boundary` | true | `string` | | `none` |
+
+## Methods
+
+### `add(buffer)`
+
+| Parameter | Required | Type | Description
+| - | - | - | - |
+| `buffer` | true | `buffer` | Buffer from request body. |
+
+### `end()`
+Call this method when there is no more data to be consumed from the stream.
+
+## Events
+
+### `header(data, isLast)`
+Emitted every time when a parser find a header part.
+
+| Property | Type | Description
+| - | - | - |
+| `data` | `buffer` | - |
+| `isLast` | `boolean` | Signals if it is a last header part. |
+
+### `data(data)`
+Emitted every time when a parser find a content data.
+
+| Property | Type | Description
+| - | - | - |
+| `data` | `buffer` | - |
+
+### `part()`
+Emitted every time when a parser reach the end of one body part.
+
+### `end()`
+Emitted when a parser reached the end of request body.
