@@ -44,7 +44,7 @@ parser.on('end', function () {
 })
 
 req.on('data', function (data) {
-  parser.add(data)
+  parser.write(data)
 })
 
 req.on('end', function () {
@@ -62,8 +62,10 @@ req.on('end', function () {
 | `boundary` | true | `string` | | `none` |
 
 ## Methods
+The parser is a Node.js Writable Stream, so you can use the `write` and the `end` methods,
+or just only the `pipe` method.
 
-### `add(buffer)`
+### `write(buffer)`
 
 | Parameter | Required | Type | Description
 | - | - | - | - |

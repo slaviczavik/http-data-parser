@@ -1,6 +1,6 @@
 {
   "name": "@slaviczavik/http-data-parser",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "A really fast Node.js streaming multipart parser.",
   "main": "./lib/index.js",
   "scripts": {
@@ -23,6 +23,6 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "@slaviczavik/stream-search": "^1.3.1"
+    "@slaviczavik/stream-search": "^1.3.3"
   }
 }

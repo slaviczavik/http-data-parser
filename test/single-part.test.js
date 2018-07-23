@@ -31,7 +31,7 @@ describe('Single part request', function () {
       })
 
       readerStream.on('data', function (data) {
-        parser.add(data)
+        parser.write(data)
       })
 
       readerStream.on('end', function () {
@@ -56,7 +56,7 @@ describe('Single part request', function () {
       })
 
       readerStream.on('data', function (data) {
-        parser.add(data)
+        parser.write(data)
       })
 
       readerStream.on('end', function () {
@@ -94,7 +94,7 @@ describe('Single part request', function () {
         let i = 0
 
         while (i < data.length) {
-          parser.add(data.slice(i, i += 8))
+          parser.write(data.slice(i, i += 8))
         }
       })
 
@@ -123,7 +123,7 @@ describe('Single part request', function () {
         let i = 0
 
         while (i < data.length) {
-          parser.add(data.slice(i, i += 8))
+          parser.write(data.slice(i, i += 8))
         }
       })
 

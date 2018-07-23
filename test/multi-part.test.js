@@ -37,7 +37,7 @@ describe('Multi part request', function () {
         })
 
         readerStream.on('data', function (data) {
-          parser.add(data)
+          parser.write(data)
         })
 
         readerStream.on('end', function () {
@@ -67,7 +67,7 @@ describe('Multi part request', function () {
         })
 
         readerStream.on('data', function (data) {
-          parser.add(data)
+          parser.write(data)
         })
 
         readerStream.on('end', function () {
@@ -109,7 +109,7 @@ describe('Multi part request', function () {
         })
 
         readerStream.on('data', function (data) {
-          parser.add(data)
+          parser.write(data)
         })
 
         readerStream.on('end', function () {
@@ -140,7 +140,7 @@ describe('Multi part request', function () {
         })
 
         readerStream.on('data', function (data) {
-          parser.add(data)
+          parser.write(data)
         })
 
         readerStream.on('end', function () {
@@ -185,7 +185,7 @@ describe('Multi part request', function () {
           let i = 0
 
           while (i < data.length) {
-            parser.add(data.slice(i, i += 8))
+            parser.write(data.slice(i, i += 8))
           }
         })
 
@@ -219,7 +219,7 @@ describe('Multi part request', function () {
           let i = 0
 
           while (i < data.length) {
-            parser.add(data.slice(i, i += 8))
+            parser.write(data.slice(i, i += 8))
           }
         })
 
@@ -265,7 +265,7 @@ describe('Multi part request', function () {
           let i = 0
 
           while (i < data.length) {
-            parser.add(data.slice(i, i += 8))
+            parser.write(data.slice(i, i += 8))
           }
         })
 
@@ -300,7 +300,7 @@ describe('Multi part request', function () {
           let i = 0
 
           while (i < data.length) {
-            parser.add(data.slice(i, i += 8))
+            parser.write(data.slice(i, i += 8))
           }
         })
 

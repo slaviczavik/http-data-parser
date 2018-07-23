@@ -15,7 +15,7 @@ parser.on('end', function () {
   console.log(`${ratio} MB/s`)
 })
 
-parser.add(buffer)
+parser.write(buffer)
 parser.end()
 
 function createMultipartBuffer (boundary, size) {
