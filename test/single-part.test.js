@@ -1,18 +1,18 @@
 const assert = require('assert')
 const fs = require('fs')
 
-const Parser = require('../lib/')
+const Parser = require('../src/')
 const { resolve, source } = require('./util')
 
 describe('Single part request', function () {
   describe('Whole buffer', function () {
     it('Should return all headers', function (done) {
-      let test = source('alpha')
-      let readerStream = fs.createReadStream(resolve(test.data))
-      let parser = new Parser(test.boundary)
+      const test = source('alpha')
+      const readerStream = fs.createReadStream(resolve(test.data))
+      const parser = Parser(test.boundary)
+      const headers = []
 
       let content = ''
-      let headers = []
 
       parser.on('header', (data) => {
         content += data
@@ -40,9 +40,9 @@ describe('Single part request', function () {
     })
 
     it('Should return all content data', function (done) {
-      let test = source('alpha')
-      let readerStream = fs.createReadStream(resolve(test.data))
-      let parser = new Parser(test.boundary)
+      const test = source('alpha')
+      const readerStream = fs.createReadStream(resolve(test.data))
+      const parser = Parser(test.boundary)
 
       let content = 0
 
@@ -51,7 +51,7 @@ describe('Single part request', function () {
       })
 
       parser.on('end', function () {
-        assert.equal(content, test.result[0].size)
+        assert.strictEqual(content, test.result[0].size)
         done()
       })
 
@@ -67,12 +67,12 @@ describe('Single part request', function () {
 
   describe('Splitted buffer', function () {
     it('Should return all headers', function (done) {
-      let test = source('alpha')
-      let readerStream = fs.createReadStream(resolve(test.data))
-      let parser = new Parser(test.boundary)
+      const test = source('alpha')
+      const readerStream = fs.createReadStream(resolve(test.data))
+      const parser = Parser(test.boundary)
+      const headers = []
 
       let content = ''
-      let headers = []
 
       parser.on('header', (data) => {
         content += data
@@ -104,9 +104,9 @@ describe('Single part request', function () {
     })
 
     it('Should return all content data', function (done) {
-      let test = source('alpha')
-      let readerStream = fs.createReadStream(resolve(test.data))
-      let parser = new Parser(test.boundary)
+      const test = source('alpha')
+      const readerStream = fs.createReadStream(resolve(test.data))
+      const parser = Parser(test.boundary)
 
       let content = 0
 
@@ -115,7 +115,7 @@ describe('Single part request', function () {
       })
 
       parser.on('end', function () {
-        assert.equal(content, test.result[0].size)
+        assert.strictEqual(content, test.result[0].size)
         done()
       })
 
