@@ -1,19 +1,19 @@
 const assert = require('assert')
 const fs = require('fs')
 
-const Parser = require('../lib/')
+const Parser = require('../src/')
 const { resolve, source } = require('./util')
 
 describe('Multi part request', function () {
   describe('Whole buffer', function () {
     describe('First part', function () {
       it('Should return all headers', function (done) {
-        let test = source('beta')
-        let readerStream = fs.createReadStream(resolve(test.data))
-        let parser = new Parser(test.boundary)
+        const test = source('beta')
+        const readerStream = fs.createReadStream(resolve(test.data))
+        const parser = Parser(test.boundary)
+        const headers = []
 
         let content = ''
-        let headers = []
         let part = 0
 
         parser.on('header', (data) => {
@@ -46,9 +46,9 @@ describe('Multi part request', function () {
       })
 
       it('Should return all content data', function (done) {
-        let test = source('beta')
-        let readerStream = fs.createReadStream(resolve(test.data))
-        let parser = new Parser(test.boundary)
+        const test = source('beta')
+        const readerStream = fs.createReadStream(resolve(test.data))
+        const parser = Parser(test.boundary)
 
         let content = 0
         let part = 0
@@ -59,7 +59,7 @@ describe('Multi part request', function () {
 
         parser.on('part', function (data) {
           if (part === 0) {
-            assert.equal(content, test.result[part].size)
+            assert.strictEqual(content, test.result[part].size)
             done()
           }
 
@@ -78,9 +78,9 @@ describe('Multi part request', function () {
 
     describe('Second part', function () {
       it('Should return all headers', function (done) {
-        let test = source('beta')
-        let readerStream = fs.createReadStream(resolve(test.data))
-        let parser = new Parser(test.boundary)
+        const test = source('beta')
+        const readerStream = fs.createReadStream(resolve(test.data))
+        const parser = Parser(test.boundary)
 
         let content = ''
         let headers = []
@@ -118,9 +118,9 @@ describe('Multi part request', function () {
       })
 
       it('Should return all content data', function (done) {
-        let test = source('beta')
-        let readerStream = fs.createReadStream(resolve(test.data))
-        let parser = new Parser(test.boundary)
+        const test = source('beta')
+        const readerStream = fs.createReadStream(resolve(test.data))
+        const parser = Parser(test.boundary)
 
         let content = 0
         let part = 0
@@ -131,7 +131,7 @@ describe('Multi part request', function () {
 
         parser.on('part', function (data) {
           if (part === 1) {
-            assert.equal(content, test.result[part].size)
+            assert.strictEqual(content, test.result[part].size)
             done()
           }
 
@@ -153,12 +153,12 @@ describe('Multi part request', function () {
   describe('Splitted buffer', function () {
     describe('First part', function () {
       it('Should return all headers', function (done) {
-        let test = source('beta')
-        let readerStream = fs.createReadStream(resolve(test.data))
-        let parser = new Parser(test.boundary)
+        const test = source('beta')
+        const readerStream = fs.createReadStream(resolve(test.data))
+        const parser = Parser(test.boundary)
+        const headers = []
 
         let content = ''
-        let headers = []
         let part = 0
 
         parser.on('header', (data) => {
@@ -195,9 +195,9 @@ describe('Multi part request', function () {
       })
 
       it('Should return all content data', function (done) {
-        let test = source('beta')
-        let readerStream = fs.createReadStream(resolve(test.data))
-        let parser = new Parser(test.boundary)
+        const test = source('beta')
+        const readerStream = fs.createReadStream(resolve(test.data))
+        const parser = Parser(test.boundary)
 
         let content = 0
         let part = 0
@@ -208,7 +208,7 @@ describe('Multi part request', function () {
 
         parser.on('part', function (data) {
           if (part === 0) {
-            assert.equal(content, test.result[part].size)
+            assert.strictEqual(content, test.result[part].size)
             done()
           }
 
@@ -231,9 +231,9 @@ describe('Multi part request', function () {
 
     describe('Second part', function () {
       it('Should return all headers', function (done) {
-        let test = source('beta')
-        let readerStream = fs.createReadStream(resolve(test.data))
-        let parser = new Parser(test.boundary)
+        const test = source('beta')
+        const readerStream = fs.createReadStream(resolve(test.data))
+        const parser = Parser(test.boundary)
 
         let content = ''
         let headers = []
@@ -275,9 +275,9 @@ describe('Multi part request', function () {
       })
 
       it('Should return all content data', function (done) {
-        let test = source('beta')
-        let readerStream = fs.createReadStream(resolve(test.data))
-        let parser = new Parser(test.boundary)
+        const test = source('beta')
+        const readerStream = fs.createReadStream(resolve(test.data))
+        const parser = Parser(test.boundary)
 
         let content = 0
         let part = 0
@@ -288,7 +288,7 @@ describe('Multi part request', function () {
 
         parser.on('part', function (data) {
           if (part === 1) {
-            assert.equal(content, test.result[part].size)
+            assert.strictEqual(content, test.result[part].size)
             done()
           }
 

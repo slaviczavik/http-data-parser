@@ -1,5 +1,5 @@
 module.exports = {
-  'alpha': {
+  alpha: {
     boundary: '--------------------------034172598905589540726558',
     data: '../data/alpha.dat',
     parts: 1,
@@ -11,7 +11,7 @@ module.exports = {
       ]
     }]
   },
-  'beta': {
+  beta: {
     boundary: '--------------------------034172598905589540726558',
     data: '../data/beta.dat',
     parts: 2,
