@@ -1,6 +1,6 @@
 {
   "name": "@slaviczavik/http-data-parser",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A really fast Node.js streaming multipart parser.",
   "main": "./src/index.js",
   "scripts": {
