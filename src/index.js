@@ -1,6 +1,5 @@
 const { Writable } = require('stream')
-// const StreamSearch = require('@slaviczavik/stream-search')
-const StreamSearch = require('../../stream-search')
+const StreamSearch = require('@slaviczavik/stream-search')
 
 const STATE = {
   UNINITIALIZED: 0,
