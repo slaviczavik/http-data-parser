@@ -57,19 +57,18 @@ req.on('end', function () {
 ## Constructor
 ### `HttpDataParser(boundary)`
 
-| Name | Required | Type | Description | Default
-| - | - | - | - | - |
-| `boundary` | true | `string` | | `none` |
+| Name       | Required | Type     |
+| ---------- | -------- | -------- |
+| `boundary` | true     | `string` |
 
 ## Methods
-The parser is a Node.js Writable Stream, so you can use the `write` and the `end` methods,
-or just only the `pipe` method.
+The parser is a Node.js Writable Stream, so you can use the `write` and the `end` methods, or just only the `pipe` method.
 
 ### `write(buffer)`
 
-| Parameter | Required | Type | Description
-| - | - | - | - |
-| `buffer` | true | `buffer` | Buffer from request body. |
+| Parameter | Required | Type     | Description               |
+| --------- | -------- | -------- | ------------------------- |
+| `buffer`  | true     | `buffer` | Buffer from request body. |
 
 ### `end()`
 Call this method when there is no more data to be consumed from the stream.
@@ -79,17 +78,17 @@ Call this method when there is no more data to be consumed from the stream.
 ### `header(data, isLast)`
 Emitted every time when a parser find a header part.
 
-| Property | Type | Description
-| - | - | - |
-| `data` | `buffer` | - |
+| Property | Type      | Description
+| -------- | --------- | ------------------------------------ |
+| `data`   | `buffer`  |                                      |
 | `isLast` | `boolean` | Signals if it is a last header part. |
 
 ### `data(data)`
 Emitted every time when a parser find a content data.
 
-| Property | Type | Description
-| - | - | - |
-| `data` | `buffer` | - |
+| Property | Type     |
+| -------- | -------- |
+| `data`   | `buffer` |
 
 ### `part()`
 Emitted every time when a parser reach the end of one body part.
