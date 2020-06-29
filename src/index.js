@@ -28,20 +28,20 @@ function Parser (boundary) {
   })
 
   bodySearch.on('part', function (result) {
-    const { isMatch, data, start } = result
-    bodyParser(isMatch, data, start)
+    bodyParser(result)
   })
 
   headSearch.on('part', function (result) {
-    const { isMatch, data, start } = result
-    headParser(isMatch, data, start)
+    headParser(result)
   })
 
   // We have to insert EOF before the starting boundary,
-  // because only so we can easily search for any boundary.
+  // only then we can easily search for any boundary.
   bodySearch.add('\r\n')
 
-  function bodyParser (isMatch, data, start) {
+  function bodyParser (result) {
+    const { isMatch, data, start } = result
+
     if (bodyState === STATE.UNINITIALIZED) {
       if (isMatch) {
         // The starting boundary.
@@ -74,7 +74,9 @@ function Parser (boundary) {
     }
   }
 
-  function headParser (isMatch, data, start) {
+  function headParser (result) {
+    const { isMatch, data, start } = result
+
     if (headState === STATE.UNINITIALIZED) {
       if (isMatch) {
         // Double EOF between headers and content,
