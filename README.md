@@ -17,7 +17,7 @@ npm i @slaviczavik/http-data-parser
 const HttpDataParser = require('@slaviczavik/http-data-parser')
 
 // A boundary must be extracted from 'content-type' request header.
-const boundary '--------------------------034172598905589540726558'
+const boundary = '--------------------------034172598905589540726558'
 const parser = HttpDataParser(boundary)
 
 parser.on('header', function (data, isLast) {
